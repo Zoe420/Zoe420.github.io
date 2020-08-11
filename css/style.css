@@ -1,0 +1,44 @@
+﻿body{
+	margin:0px;
+	padding:0px;
+}
+
+header{
+	
+	width:600px;
+	height:600px;
+	margin:0px auto;
+	
+	position: absolute; 
+	top: 50%; left: 50%; 
+	-webkit-transform: translate(-50%,-50%); 
+	-ms-transform: translate(-50%,-50%); 
+	transform: translate(-50%,-50%); 
+	text-align:center;
+	
+	color:white;
+	font-size:3.2em;
+	padding-top:200px;
+}
+
+/***鼠标悬浮图片旋转360度 begin***/
+.xwcms {    
+            margin: 30 auto;
+            -webkit-border-radius: 110px;
+            border-radius: 110px;
+            -webkit-transition: -webkit-transform 0.4s ease-out;
+            -moz-transition: -moz-transform 0.4s ease-out;
+            -o-transition: -o-transform 0.4s ease-out;
+            -ms-transition: -ms-transform 0.4s ease-out;
+			width:80px;
+			height:80px;
+			box-shadow:0 0 0 5px #fff;
+       }
+.xwcms:hover {
+            -webkit-transform: rotateZ(360deg);
+            -moz-transform: rotateZ(360deg);
+            -o-transform: rotateZ(360deg);
+            -ms-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+        }
+/***鼠标悬浮图片旋转360度 begin***/

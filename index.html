@@ -1,173 +1,91 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>YouTiy 此时此刻</title>
-<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen">
-<link rel="stylesheet" href="inc/colorbox.css" type="text/css" media="screen">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link href="images/favicon.ico" rel="shortcut icon">
-</head>
-<body>
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<div class="container" id="app">
-	<h1>YouTiy<span class="siteTitle"> 此时此刻</span></h1>
-	<p class="lead">“记录人生每一个值得珍藏的时刻”</p>
+        <title>周末の问候</title>
+        <meta name="description" content="">
 
-	<h2 class="line-head">此时此刻</h2>
-	<div id="timelineContainer" class="timelineContainer">
+        <!-- The compiled CSS file -->
+        <link rel="stylesheet" href="css/production.css">
 
-		<div class="timelineToggle"><p><a class="expandAll">+ 全部展开</a></p></div>
 
-		<br class="clear">
-
-		<div v-for="(m,findex) in modules">
-				<div class="timelineMajor">
-					<h2 class="timelineMajorMarker"><span>{{m.year}}</span></h2>
-					<todo-item v-for="(item,index) in m.eventTemps" v-bind:todo="item"  v-bind:dd="index" v-bind:pdd="findex" :id="gernerateId(index)"></todo-item>
-				</div>
-		</div>
-
-		<br class="clear">
-	</div><!-- /#timelineContainer -->
-
-</div><!-- /.container -->
-
-<!-- GLOBAL CORE SCRIPTS -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="inc/colorbox.js"></script>
-<script type="text/javascript" src="js/timeliner.min.js"></script>
-<script type="text/javascript" src="js/magnific-popup.min.js"></script>
-<script src="js/vue/2.2.2/vue.min.js"></script>
-<script>
-		/**********************************
-		author    : 周元俊
-		powered by：youtiy
-		my blog   ：http://www.youtiy.com/
-		**********************************/
-	
-		var itemTemp='	<dl class="timelineMinor">'+
-					 '		<dt :id="cpnGernerateId(pdd,dd)"><a href="#">{{todo.title}}</a></dt>'+
-					 '		<dd class="timelineEvent" :id="cpnGernerateId2(pdd,dd)" style="display:none;">'+
-					 '			<h3>{{todo.time}}</h3>'+
-					 '			<div class="imgs">'+
-					 '              <span v-for="srcValue in todo.imgsrc" :src="srcValue">'+
-					 '					<a :href="srcValue"><img :src="srcValue"/></a>'+
-					 '              </span>'+ 
-					 '			</div>'+
-					 '			<p>'+
-					 '				{{todo.content}}'+
-					 '			</p>'+
-					 '			<blockquote  :style="{ display:todo.isBlockquoteShow}">'+
-					 '				{{todo.blockquote}}'+
-					 '              <span v-html="todo.music"></span>'+ 
-					 '				<div class="attribution">&mdash;{{todo.author}}</div>'+
-					 '			</blockquote>'+
-					 '			<br class="clear">'+
-					 '		</dd>'+
-					 '	</dl>';
-	
-		Vue.component('todo-item', {
-		  //注意：props属性命名不能和值的变量名称一样，否则有可能会找不到	
-		  props: ['todo','dd','pdd'],
-		  template: itemTemp,
-		  methods:{
-				cpnGernerateId: function (pdd,dd){
-					return pdd+"_" +dd;
-				},
-				cpnGernerateId2: function (pdd,dd){
-					return pdd+"_" +dd+"EX";
-				}
-			}
-		})
+        <!-- favicon.ico. Place these in the root directory. -->
+        <link rel="shortcut icon" href="favicon.ico">
 		
-	
-		var app = new Vue({
-			el : '#app',
-			data : {
-				modules:[
-				  { 
-					 year: '2018',
-					 eventTemps: [
-					 { 
-						  "title": "“心里一直住着她",
-						  "time":"2018/01/16 小雨",
-						  "imgsrc":["images/content/7e8b4ac8ly1fiaw24814mj21hc0u00y5.jpg"],
-						  "content":"此时此刻我才明白，心里一直住着她，如果说日有所思才会夜有所梦，那么到后来日不思了，夜还梦又是为什么？",
-						  "blockquote":"",
-						  "music":'<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=230 height=86 src="//music.163.com/outchain/player?type=2&id=465454738&auto=0&height=66&width=200;"></iframe>',
-						  "author":"郁可唯/林凡",
-						  "isBlockquoteShow":"block",
-					 }, 
-					 { 
-						  "title": "“2018年第一篇",
-						  "time":"2018/01/15 晴",
-						  "imgsrc":["images/content/7e8b4ac8ly1fiaw24814mj21hc0u00y5.jpg"],
-						  "content":"此时此刻我想的是，我这样的努力，最后到底能换来什么？",
-						  "blockquote":"给时间一点时间，让它证明我们的选择",
-						  "music":'',
-						  "author":"周元俊",
-						  "isBlockquoteShow":"block",
-					  } 
-					]
-				  }
-				]
-			},
-			beforeCreate : function() {
-				var _self = this;
-				
-			},
-			beforeMount:function(){
-				/*alert(this.modules);
-				 for(var i=0;i<this.modules.length;i++){
-					var module=this.modules[i];
-					for(var j=0;j<module.eventTemps.length;j++){
-						var event=module.eventTemps[j];
-						module.id=i+"_"+j;
-						module.id2=i+"_"+j+"EX";
-						alert(module.id2);
-					}
-				}*/
-			},
-			created: function () {
-			
-			},
-			methods : {
-				greet : function(event) {
-					//alert(this.data.message);
-				},
-				gernerateId: function (index){
-					return "person_" +index
-				}
-			}
-		});
-</script>
-<script>
-	$(document).ready(function() {
-		$.timeliner({
-			startOpen:['#0_0EX']
-		});
-		$.timeliner({
-			timelineContainer: '#timelineContainer_1'
-		});
-		// Colorbox Modal
-		$(".CBmodal").colorbox({inline:true, initialWidth:100, maxWidth:682, initialHeight:100, transition:"elastic",speed:750});
-	});
-</script>
+		<style>
+		*{
+			font-family: 思源黑体 CN;
+		}
+		</style>
 
-<script>
-$(document).ready(function() {
-	$('.imgs').each(function() { // the containers for all your galleries
-		$(this).magnificPopup({
-			delegate: 'a', // the selector for gallery item
-			type: 'image',
-			gallery: {
-			  enabled:false
-			}
-		});
-	});
-});  
-</script>
-</body>
+    </head>
+
+    <body>
+
+
+    <!-- Header -->
+    <header class="pt2 pb1 align--center">
+        <div class="container">
+            <p>Welcome to</p>
+            <h1 title="Camp Chippewa" style="color:#FF6347;">周末の问候</h1>
+	    <h7 title="Camp Chippewa" style="color:#FF6347;">偷别人的模板实在是太香了</h7>
+        </div>
+    </header>
+
+    <!-- Body -->
+    <main>
+        
+        <div class="container">
+
+            <!-- Info -->
+            <section class="grid-row grid-row--center">
+                <!-- a -->
+                <div class="grid-column span-half pt3 pb3 mobile-m order-2">
+                    <h3>° 美好 </h3>
+                    <p>酒店附近的风景还是不错的（ps：几公里都叫附近，哈哈哈）。</p>
+                </div>
+                <div class="grid-column span-half pt3 pb3 mobile-m order-1">
+                    <div class="relative">
+                        <img class="info-image relative z2" src="img/a.jpg" alt="a">
+                        <div class="pattern pattern--right-middle absolute z1"></div>
+                        <!-- 注释：right可改为left，midedle可改为up，dowm等 -->
+                    </div>
+                </div>
+	
+	  <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#987cb9 SIZE=3>
+                <!-- Cabin -->
+                <div class="grid-column span-half pt3 pb3 mobile-m order-3">
+                    <div class="relative">
+                        <img class="info-image relative z2" src="img/cabin.jpg" alt="Cabin">
+                        <div class="pattern pattern--left-down absolute z1"></div>
+                    </div>
+                </div>
+                <div class="grid-column span-half pt3 pb3 mobile-m order-4">
+                    <h3 >晴空 °</h3>
+                    <p>浩瀚的晴空，堆积的白云，曾承载着我多少无尽的幻想。</p>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt2 pb2">
+        <div class="container align--center">
+            <p style="color:#FF6347;">周末·简设°</p>
+            <p style="font-size:.8em;">Copyright &copy; 2019.youtiy.com All rights reserved.</p>
+        </div>
+    </footer>
+
+    </body>
 </html>
+
+
+
+
+
